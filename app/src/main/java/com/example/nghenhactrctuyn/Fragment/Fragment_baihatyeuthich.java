@@ -43,7 +43,6 @@ public class Fragment_baihatyeuthich extends Fragment {
 
     private void anhxa() {
         recyclerViewbaihatyeuthich=(RecyclerView) view.findViewById(R.id.recycleviewbaihatyeuthich);
-        textViewxemthembaihathot=(TextView) view.findViewById(R.id.Xemthembaihathot);
 
     }
 

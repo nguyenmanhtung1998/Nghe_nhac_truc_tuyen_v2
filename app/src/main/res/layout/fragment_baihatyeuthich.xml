@@ -14,15 +14,6 @@
           android:text="BÀI HÁT  YÊU THÍCH"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"></TextView>
-        <TextView
-            android:id="@+id/Xemthembaihathot"
-            android:layout_marginLeft="5dp"
-            android:textColor="#3046CE"
-            android:textSize="18sp"
-            android:text="Xem thêm"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
     </RelativeLayout>
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recycleviewbaihatyeuthich"
