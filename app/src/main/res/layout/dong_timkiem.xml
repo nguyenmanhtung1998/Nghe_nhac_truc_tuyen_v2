@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="7dp"
+        android:id="@+id/imagehinhanhtimkiem"
+        android:scaleType="fitXY"
+        android:layout_width="80dp"
+        android:layout_height="80dp"></ImageView>
+    <TextView
+        android:textStyle="bold"
+        android:layout_toLeftOf="@+id/like"
+        android:textColor="#1B1B1A"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginTop="15dp"
+        android:id="@+id/Tenbaihattimkiem"
+        android:textSize="18sp"
+        android:layout_marginRight="7dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/imagehinhanhtimkiem"
+        android:text="Ten bai hat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+    <TextView
+        android:id="@+id/Casitimkiem"
+        android:layout_toLeftOf="@id/like"
+        android:textColor="#61605B"
+        android:textSize="15sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@+id/imagehinhanhtimkiem"
+        android:layout_below="@+id/Tenbaihattimkiem"
+        android:text="Ca Si"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+    <ImageView
+        android:id="@+id/like"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/iconlove"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp">
+    </ImageView>
+</RelativeLayout>

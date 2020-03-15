@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="17sp"
+            android:textColor="#ffff"
+            android:text="1"
+            android:layout_margin="10dp"
+            android:id="@+id/textplayindexyeuthich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:textSize="17sp"
+            android:textColor="#ffff"
+            android:text="Ten ca khuc"
+            android:singleLine="true"
+            android:maxWidth="250dp"
+            android:ellipsize="end"
+            android:layout_toRightOf="@+id/textplayindexyeuthich"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/textplaynhactenbaihatyeuthich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:textSize="12sp"
+            android:textColor="#ffff"
+            android:text="ca si"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_toRightOf="@+id/textplayindexyeuthich"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/textplaynhactenbaihatyeuthich"
+            android:id="@+id/texttencasiyeuthich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+    </RelativeLayout>
+</RelativeLayout>

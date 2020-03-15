@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/imagebackgroud"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></ImageView>
+    <View
+        android:background="@drawable/custom_backgrud"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></View>
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_alignBottom="@+id/imagebackgroud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/imageviewbanner"
+            android:padding="2dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"></ImageView>
+        <TextView
+            android:textStyle="bold"
+            android:text="Lo yeu em mat roi"
+            android:textColor="#111010"
+            android:textSize="18sp"
+            android:id="@+id/textviewtitlebannertenbaihat"
+            android:layout_toRightOf="@+id/imageviewbanner"
+            android:layout_alignTop="@+id/imageviewbanner"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+       <RelativeLayout
+           android:layout_toRightOf="@+id/imageviewbanner"
+           android:layout_below="@+id/textviewtitlebannertenbaihat"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:id="@+id/tvnoidungbanner"
+               android:textColor="#0F0F0F"
+               android:layout_marginRight="40dp"
+               android:maxLines="2"
+               android:text="Chao ban den voi ca khuc moi nhat "
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"></TextView>
+       </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
