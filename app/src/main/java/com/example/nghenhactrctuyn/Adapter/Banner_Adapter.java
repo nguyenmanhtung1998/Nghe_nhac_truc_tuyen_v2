@@ -44,12 +44,12 @@ public class Banner_Adapter extends PagerAdapter {
         LayoutInflater inflater=LayoutInflater.from(context);
         View view=inflater.inflate(R.layout.dong_banner,null);
         final ImageView imgbackgroundbanner=view.findViewById(R.id.imagebackgroud);
-        ImageView imgsongbanner=view.findViewById(R.id.imageviewbanner);
+
         TextView txttitlesongbanner=view.findViewById(R.id.textviewtitlebannertenbaihat);
         TextView txtnoidung=view.findViewById(R.id.tvnoidungbanner);
 
         Picasso.with(context).load(arrayListbanner.get(position).getHinhAnh()).into(imgbackgroundbanner);
-        Picasso.with(context).load(arrayListbanner.get(position).getHinhBaiHat()).into(imgsongbanner);
+
 
         txttitlesongbanner.setText(arrayListbanner.get(position).getTenBaiHat());
         txtnoidung.setText(arrayListbanner.get(position).getNoiDung());

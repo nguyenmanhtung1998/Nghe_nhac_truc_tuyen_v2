@@ -36,7 +36,6 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
             viewholder=new viewholder();
             viewholder.txttenplaylist=convertView.findViewById(R.id.textviewtenplaylist);
             viewholder.imgbackgroudplaylist=convertView.findViewById(R.id.imageviewbackgroudplaylist);
-            viewholder.imghinhplaylist=convertView.findViewById(R.id.imageviewplaylist);
             convertView.setTag(viewholder);
         }
         else {
@@ -44,7 +43,6 @@ public class PlaylistAdapter extends ArrayAdapter<Playlist> {
         }
         Playlist playlist=getItem(position);
         Picasso.with(getContext()).load(playlist.getHinhPlayList()).into(viewholder.imgbackgroudplaylist);
-        Picasso.with(getContext()).load(playlist.getIcon()).into(viewholder.imghinhplaylist);
         viewholder.txttenplaylist.setText(playlist.getTen());
         return convertView;
     }
