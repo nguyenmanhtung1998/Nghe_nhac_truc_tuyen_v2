@@ -59,10 +59,8 @@ public class Fragment_baihatyeuthich extends Fragment {
                 recyclerViewbaihatyeuthich.setLayoutManager(linearLayoutManager);
                 recyclerViewbaihatyeuthich.setAdapter(adapter);
             }
-
             @Override
             public void onFailure(Call<List<Baihatyeuthich>> call, Throwable t) {
-
             }
         });
 
