@@ -1,52 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    android:elevation="5dp"
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout
+    <ImageView
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="7dp"
+        android:id="@+id/imagehinhanhdanhsachbaihat"
+        android:scaleType="fitXY"
+        android:layout_width="80dp"
+        android:layout_height="80dp"></ImageView>
+    <TextView
+        android:textStyle="bold"
+        android:layout_toLeftOf="@+id/like"
+        android:textColor="#1B1B1A"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginTop="15dp"
+        android:id="@+id/Tendanhsachbaihat"
+        android:textSize="18sp"
+        android:layout_marginRight="7dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/imagehinhanhdanhsachbaihat"
+        android:text="Ten bai hat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_margin="15dp"
-            android:layout_marginRight="7dp"
-            android:textSize="20sp"
-            android:id="@+id/textviewsothutu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
-        <TextView
-            android:id="@+id/tenbaihat"
-            android:textColor="#161615"
-            android:textSize="20sp"
-            android:text="Ten bai hat"
-            android:layout_toRightOf="@+id/textviewsothutu"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="250dp"></TextView>
-        <TextView
-            android:id="@+id/tencasi"
-            android:textColor="#77776E"
-            android:textSize="18sp"
-            android:layout_marginRight="7dp"
-            android:layout_toRightOf="@+id/textviewsothutu"
-            android:layout_below="@+id/tenbaihat"
-            android:text="Ten ca si"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </TextView>
-        <ImageView
-            android:layout_marginRight="5dp"
-            android:src="@drawable/iconlove"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:id="@+id/imvluotthichdanhsachbaihat"
-            android:layout_width="30dp"
-            android:layout_height="30dp">
-
-        </ImageView>
-    </RelativeLayout>
-
-</androidx.cardview.widget.CardView>
+        android:layout_height="wrap_content"></TextView>
+    <TextView
+        android:id="@+id/Casidanhsach"
+        android:layout_toLeftOf="@id/like"
+        android:textColor="#61605B"
+        android:textSize="15sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@+id/imagehinhanhdanhsachbaihat"
+        android:layout_below="@+id/Tendanhsachbaihat"
+        android:text="Ca Si"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+    <ImageView
+        android:id="@+id/like"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/iconlove"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="30dp"
+        android:layout_height="25dp">
+    </ImageView>
+</RelativeLayout>

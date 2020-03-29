@@ -2,6 +2,7 @@ package com.example.nghenhactrctuyn.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +19,13 @@ import com.example.nghenhactrctuyn.Model.Baihat;
 import com.example.nghenhactrctuyn.R;
 import com.example.nghenhactrctuyn.Service.APIservice;
 import com.example.nghenhactrctuyn.Service.Dataservice;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class Danhsachbaihat_Adapter extends RecyclerView.Adapter<Danhsachbaihat_Adapter.Viewholder>{
 
     Context context;
@@ -48,7 +48,7 @@ public class Danhsachbaihat_Adapter extends RecyclerView.Adapter<Danhsachbaihat_
              Baihat baihat=baihatArrayList.get(position);
              holder.tenbaihat.setText(baihat.getTenbaihat());
              holder.tencasi.setText(baihat.getCasi());
-             holder.sothutu.setText(baihat.getIdBaiHat());
+        Picasso.with(context).load(baihat.getHinhbaihat()).into(holder.hinhbaihat);
     }
 
     @Override
@@ -57,28 +57,39 @@ public class Danhsachbaihat_Adapter extends RecyclerView.Adapter<Danhsachbaihat_
     }
 
     public class Viewholder extends RecyclerView.ViewHolder{
-          TextView sothutu,tenbaihat,tencasi;
-          ImageView like;
+          TextView tenbaihat,tencasi;
+          ImageView like,hinhbaihat;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            sothutu=itemView.findViewById(R.id.textviewsothutu);
-            tenbaihat=itemView.findViewById(R.id.tenbaihat);
-            tencasi=itemView.findViewById(R.id.tencasi);
-            like=itemView.findViewById(R.id.imvluotthichdanhsachbaihat);
+            hinhbaihat = itemView.findViewById(R.id.imagehinhanhdanhsachbaihat);
+            tenbaihat = itemView.findViewById(R.id.Tendanhsachbaihat);
+            tencasi = itemView.findViewById(R.id.Casidanhsach);
+            like = itemView.findViewById(R.id.like);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GetPosison(getAdapterPosition());
+                    Intent intent=new Intent(context, PlayvideoActiviti.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("int",GetPosison(getAdapterPosition()));
+                    bundle.putParcelableArrayList("danhsachbaihat",baihatArrayList);
+                    intent.putExtra("dulieu",bundle);
+                    context.startActivity(intent);
+                }
+            });
             like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     like.setImageResource(R.drawable.iconloved);
-                    Dataservice dataservice= APIservice.getService();
-                    Call<String> call=dataservice.Getupdateluotthich("1",baihatArrayList.get(getPosition()).getIdBaiHat());
+                    Dataservice dataservice = APIservice.getService();
+                    Call<String> call = dataservice.Getupdateluotthich("1", baihatArrayList.get(getPosition()).getIdBaiHat());
                     call.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
-                            String ketqua=response.body();
-                            if(ketqua.equals("sucset")){
+                            String ketqua = response.body();
+                            if (ketqua.equals("sucset")) {
                                 Toast.makeText(context, "Đã thích", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(context, "Lối!!!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -90,14 +101,11 @@ public class Danhsachbaihat_Adapter extends RecyclerView.Adapter<Danhsachbaihat_
                     });
                 }
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context, PlayvideoActiviti.class);
-                    intent.putExtra("cakhuc",baihatArrayList.get(getPosition()));
-                    context.startActivity(intent);
-                }
-            });
+
         }
+    }
+    private int GetPosison(int cout) {
+        int posison=cout;
+        return posison;
     }
 }

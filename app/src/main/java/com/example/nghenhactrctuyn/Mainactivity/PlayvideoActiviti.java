@@ -65,7 +65,7 @@ public class PlayvideoActiviti extends AppCompatActivity {
             public void run() {
                 if (viewpagerplaylist.getItem(1) != null) {
                     if (mangbaihatchung.size() > 0) {
-                        fragment_dianhac.Playnhac(mangbaihatchung.get(0).getHinhbaihat());
+                        fragment_dianhac.Playnhac(mangbaihatchung.get(position).getHinhbaihat());
                         handler.removeCallbacks(this);
                     } else {
                         handler.postDelayed(this, 300);
@@ -167,6 +167,7 @@ public class PlayvideoActiviti extends AppCompatActivity {
                         if (position > (mangbaihatchung.size() - 1)) {
                             position = 0;
                         }
+                        fragment_dianhac.Playnhac(mangbaihatchung.get(position).getHinhbaihat());
                         new playMp3().execute(mangbaihatchung.get(position).getLinkbaihat());
                         toolbar.setTitle(mangbaihatchung.get(position).getTenbaihat());
                         updatatime();
@@ -213,6 +214,7 @@ public class PlayvideoActiviti extends AppCompatActivity {
                             }
                             position = index;
                         }
+                        fragment_dianhac.Playnhac(mangbaihatchung.get(position).getHinhbaihat());
                         new playMp3().execute(mangbaihatchung.get(position).getLinkbaihat());
                         toolbar.setTitle(mangbaihatchung.get(position).getTenbaihat());
                         updatatime();
@@ -235,18 +237,13 @@ public class PlayvideoActiviti extends AppCompatActivity {
     }
 
     private void getdatainten() {
-        Intent intent = getIntent();
-        mangbaihatchung.clear();
-        if (intent != null) {
-            if (intent.hasExtra("cakhuc")) {
-                Baihat baihat = intent.getParcelableExtra("cakhuc");
-                mangbaihatchung.add(baihat);
-            }
-            if (intent.hasExtra("fullcakhuc")) {
-                ArrayList<Baihat> baihats = intent.getParcelableArrayListExtra("fullcakhuc");
-                mangbaihatchung = baihats;
-            }
+        Intent intent=getIntent();
+        Bundle bundle=intent.getBundleExtra("dulieu");
+        if(bundle!=null){
+            position=bundle.getInt("int");
+            mangbaihatchung=bundle.getParcelableArrayList("danhsachbaihat");
         }
+
     }
 
     private void anhxa() {
@@ -279,10 +276,12 @@ public class PlayvideoActiviti extends AppCompatActivity {
         viewpagerplaylist.AddFra(fragment_dianhac);
         viewPagerplaynhac.setAdapter(viewpagerplaylist);
         fragment_dianhac = (Fragment_dianhac) viewpagerplaylist.getItem(1);
-        if (mangbaihatchung.size() > 0) {
-            getSupportActionBar().setTitle(mangbaihatchung.get(0).getTenbaihat());
-            new playMp3().execute(mangbaihatchung.get(0).getLinkbaihat());
+        if (mangbaihatchung.size() > 0)
+        {
+            getSupportActionBar().setTitle(mangbaihatchung.get(position).getTenbaihat());
+            new playMp3().execute(mangbaihatchung.get(position).getLinkbaihat());
             imageButtonplay.setImageResource(R.drawable.iconpause);
+
         }
     }
 
@@ -375,12 +374,11 @@ public class PlayvideoActiviti extends AppCompatActivity {
                             if (position > (mangbaihatchung.size() - 1)) {
                                 position = 0;
                             }
+                            fragment_dianhac.Playnhac(mangbaihatchung.get(position).getHinhbaihat());
                             new playMp3().execute(mangbaihatchung.get(position).getLinkbaihat());
                             toolbar.setTitle(mangbaihatchung.get(position).getTenbaihat());
                         }
                     }
-
-
                     imageButtonpre.setClickable(false);
                     imageButtonnext.setClickable(false);
                     Handler handler1 = new Handler();
@@ -403,5 +401,11 @@ public class PlayvideoActiviti extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
         textViewtotaltimesong.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekBar.setMax(mediaPlayer.getDuration());
+    }
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
     }
 }

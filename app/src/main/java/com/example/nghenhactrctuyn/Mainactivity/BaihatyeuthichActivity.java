@@ -89,10 +89,11 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
 
     private void getdatainten() {
         Intent intent=getIntent();
-        mangbaihatyeuthichchung.clear();
-        if (intent.hasExtra("cakhucyeuthich")) {
-            Baihatyeuthich baihatyeuthich = intent.getParcelableExtra("cakhucyeuthich");
-            mangbaihatyeuthichchung.add(baihatyeuthich);
+        Bundle bundle=intent.getBundleExtra("dulieu");
+        if(bundle!=null){
+            position=bundle.getInt("int");
+            mangbaihatyeuthichchung=bundle.getParcelableArrayList("danhsachbaihat");
+            Log.d("AAA",mangbaihatyeuthichchung.get(position).getLinkbaihat());
         }
     }
     private void evenclick() {
@@ -102,7 +103,7 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
             public void run() {
 
                     if (mangbaihatyeuthichchung.size() > 0) {
-                        Playnhac(mangbaihatyeuthichchung.get(0).getHinhbaihat(),toolbar);
+                        Playnhac(mangbaihatyeuthichchung.get(position).getHinhbaihat(),toolbar);
                         handler.removeCallbacks(this);
                     } else {
                         handler.postDelayed(this, 300);
@@ -207,6 +208,7 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
                         new playMp3().execute(mangbaihatyeuthichchung.get(position).getLinkbaihat());
                         toolbar.setTitle(mangbaihatyeuthichchung.get(position).getTenbaihat());
                         updatatime();
+                        Playnhac(mangbaihatyeuthichchung.get(position).getHinhbaihat(),toolbar);
                     }
                 }
                 imageButtonpre.setClickable(false);
@@ -253,6 +255,7 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
                         new playMp3().execute(mangbaihatyeuthichchung.get(position).getLinkbaihat());
                         toolbar.setTitle(mangbaihatyeuthichchung.get(position).getTenbaihat());
                         updatatime();
+                        Playnhac(mangbaihatyeuthichchung.get(position).getHinhbaihat(),toolbar);
                     }
                 }
                 imageButtonpre.setClickable(false);
@@ -302,6 +305,7 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
         }
     }
     private void Timesong() {
+        Playnhac(mangbaihatyeuthichchung.get(position).getHinhbaihat(),toolbar);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
         textViewtotaltimesong.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekBar.setMax(mediaPlayer.getDuration());
@@ -361,6 +365,7 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
                             if (position > (mangbaihatyeuthichchung.size() - 1)) {
                                 position = 0;
                             }
+                            Playnhac(mangbaihatyeuthichchung.get(position).getHinhbaihat(),toolbar);
                             new playMp3().execute(mangbaihatyeuthichchung.get(position).getLinkbaihat());
                             toolbar.setTitle(mangbaihatyeuthichchung.get(position).getTenbaihat());
                         }
@@ -388,5 +393,11 @@ public class BaihatyeuthichActivity extends AppCompatActivity {
         animation= AnimationUtils.loadAnimation(this,R.anim.xoaydianhac);
         circleImageView.startAnimation(animation);
         toolbar1.setTitle(mangbaihatyeuthichchung.get(position).getTenbaihat());
+    }
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
     }
 }

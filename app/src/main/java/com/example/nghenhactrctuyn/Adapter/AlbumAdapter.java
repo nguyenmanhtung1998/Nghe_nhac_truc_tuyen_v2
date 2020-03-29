@@ -70,9 +70,6 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.Viewholder>{
                     context.startActivity(intent);
                 }
             });
-
-
-
         }
     }
 }

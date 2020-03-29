@@ -2,6 +2,7 @@ package com.example.nghenhactrctuyn.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,11 +98,20 @@ public class Baihatyeuthich_Adapter  extends RecyclerView.Adapter<Baihatyeuthich
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    GetPosison(getAdapterPosition());
                     Intent intent=new Intent(context, BaihatyeuthichActivity.class);
-                    intent.putExtra("cakhucyeuthich",baihatyeuthichArrayList.get(getPosition()));
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("int",GetPosison(getAdapterPosition()));
+                    bundle.putParcelableArrayList("danhsachbaihat",baihatyeuthichArrayList);
+                    intent.putExtra("dulieu",bundle);
                     context.startActivity(intent);
                 }
             });
         }
+    }
+
+    private int GetPosison(int adapterPosition) {
+        int posison=adapterPosition;
+        return posison;
     }
 }

@@ -73,24 +73,19 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         anhxa();
         init();
         if(album!=null&&!album.getTenalbum().equals("")){
-            setValueView(album.getTenalbum(),album.getHinhalbum());
             getDataAlbumrieng(album.getIdAlbum());
         }
         if(quangcao!=null&& !quangcao.getTenBaiHat().equals("")){
-            setValueView(quangcao.getTenBaiHat(),quangcao.getHinhBaiHat());
             getDataquangcao(quangcao.getIdQuangCao());
 
         }
         if(playlist !=null&& !playlist.getTen().equals("")){
-            setValueView(playlist.getTen(),playlist.getHinhPlayList());
             getDataplaylist(playlist.getIdPlayList());
         }
         if(theloai!=null &&!theloai.getTenTheLoai().equals("")){
-            setValueView(theloai.getTenTheLoai(),theloai.getHinhTheLoai());
             getDatatheloai(theloai.getIdTheLoai());
         }
         if(fullalbum!=null&&!fullalbum.getTenAlbum().equals("")){
-            setValueView(fullalbum.getTenAlbum(),fullalbum.getHinhAlbum());
             getDataAlbum(fullalbum.getIdAlbum());
         }
 
@@ -114,7 +109,6 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
             }
         });
-        Creatfloatbutton();
     }
 
     private void getDataAlbum(String idalbum) {
@@ -136,7 +130,6 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
             }
         });
-       Creatfloatbutton();
     }
 
     private void getDatatheloai(String idtheloai) {
@@ -158,7 +151,6 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
              }
          });
-         Creatfloatbutton();
     }
 
     private void getDataplaylist(String idplaylist) {
@@ -180,7 +172,6 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
             }
         });
-        Creatfloatbutton();
     }
 
     private void getDataquangcao(String idquangcao) {
@@ -202,27 +193,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
 
             }
         });
-        Creatfloatbutton();
     }
-
-    private void setValueView(String ten, String hinh) {
-        collapsingToolbarLayout.setTitle(ten);
-        try {
-            URL url=new URL(hinh);
-            Bitmap bitmap= BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            BitmapDrawable bitmapDrawable=new BitmapDrawable(getResources(),bitmap);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                collapsingToolbarLayout.setBackground(bitmapDrawable);
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Picasso.with(this).load(hinh).into(imageViewdanhsachcakhuc);
-
-    }
-
     private void init() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -232,19 +203,11 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 finish();
             }
         });
-        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-        floatingActionButton.setEnabled(false);
     }
 
     private void anhxa() {
-        collapsingToolbarLayout=(CollapsingToolbarLayout) findViewById(R.id.appbarcoll);
-        coordinatorLayout=(CoordinatorLayout) findViewById(R.id.coor);
         toolbar=findViewById(R.id.toolbar);
         recyclerViewbaihat=(RecyclerView) findViewById(R.id.recycleviewDanhsachbaihat);
-        floatingActionButton=(FloatingActionButton) findViewById(R.id.Floattingactioinbutton);
-        imageViewdanhsachcakhuc=(ImageView) findViewById(R.id.imageviewcakhuc);
-
     }
 
     private void DataIntent() {
@@ -267,16 +230,5 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 album= (Album) intent.getSerializableExtra("albumrieng");
             }
         }
-    }
-    private void Creatfloatbutton(){
-        floatingActionButton.setEnabled(true);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(DanhsachbaihatActivity.this,PlayvideoActiviti.class);
-                intent.putExtra("fullcakhuc",mangbaihat);
-                startActivity(intent);
-            }
-        });
     }
 }
